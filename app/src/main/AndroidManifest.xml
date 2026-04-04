@@ -10,6 +10,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HelloCustomDiscover" />
+        android:theme="@style/Theme.HelloCustomDiscover" >
+
+        <service
+            android:name=".HelloOverlayService"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <!-- permission is often ignored / launcher-dependent -->
+
+            <intent-filter>
+                <action android:name="com.android.launcher3.WINDOW_OVERLAY" />
+            </intent-filter>
+        </service>
+        
+        <activity android:name=".DebugActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+    </application>
 
 </manifest>
