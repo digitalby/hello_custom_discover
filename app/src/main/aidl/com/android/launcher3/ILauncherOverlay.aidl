@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.android.launcher3.ILauncherOverlayCallback;
 
 interface ILauncherOverlay {
-    void windowAttached(in WindowManager.LayoutParams attrs,
+    void windowAttached(in android.view.WindowManager.LayoutParams attrs,
                         in ILauncherOverlayCallback cb,
                         int options);
     void windowDetached(boolean isChangingConfigurations);
