@@ -59,6 +59,12 @@ android {
     aidl = true
   }
 
+  packaging {
+    resources {
+      excludes += "DebugProbesKt.bin"
+    }
+  }
+
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
