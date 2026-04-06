@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Unit tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testReleaseUnitTest
 
       - name: Assemble debug
         run: ./gradlew assembleDebug
