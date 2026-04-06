@@ -63,7 +63,7 @@ jobs:
 
       - name: Decode keystore
         run: |
-          echo "$KEYSTORE_BASE64" | base64 -d > /tmp/keystore.jks
+          echo "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 -d > /tmp/keystore.jks
           echo "ANDROID_KEYSTORE_PATH=/tmp/keystore.jks" >> "$GITHUB_ENV"
 
       - name: Assemble release APK
