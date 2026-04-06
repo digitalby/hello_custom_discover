@@ -62,14 +62,6 @@ android {
   }
 }
 
-androidComponents {
-  beforeVariants { variantBuilder ->
-    if (variantBuilder.buildType == "release") {
-      variantBuilder.enableUnitTest = true
-    }
-  }
-}
-
 dependencies {
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)

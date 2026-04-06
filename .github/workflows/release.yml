@@ -31,7 +31,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Unit tests
-        run: ./gradlew testReleaseUnitTest
+        run: ./gradlew :app:testReleaseUnitTest
 
   release:
     name: Build & Publish
