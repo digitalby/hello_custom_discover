@@ -66,6 +66,15 @@ jobs:
           echo "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 -d > /tmp/keystore.jks
           echo "ANDROID_KEYSTORE_PATH=/tmp/keystore.jks" >> "$GITHUB_ENV"
 
+      - name: Verify keystore
+        run: |
+          echo "File type: $(file /tmp/keystore.jks)"
+          echo "File size: $(wc -c < /tmp/keystore.jks) bytes"
+          keytool -list -keystore /tmp/keystore.jks \
+            -storepass "$ANDROID_STORE_PASSWORD" 2>&1 \
+            | grep -E "Keystore type|contains|Alias name|Entry type" \
+            || echo "keytool -list failed (store password may be wrong)"
+
       - name: Assemble release APK
         env:
           GITHUB_REF_NAME: ${{ github.ref_name }}
