@@ -27,6 +27,9 @@ jobs:
       - name: Lint
         run: ./gradlew lint
 
+      - name: List test tasks
+        run: ./gradlew :app:tasks --all | grep -i test || true
+
       - name: Unit tests
         run: ./gradlew :app:testReleaseUnitTest
 
