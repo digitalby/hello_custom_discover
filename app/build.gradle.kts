@@ -1,3 +1,6 @@
+import com.android.build.api.variant.HasHostTestsBuilder
+import com.android.build.api.variant.HostTestBuilder
+
 fun versionCodeFromTag(): Int {
     val tag = System.getenv("GITHUB_REF_NAME") ?: return 1
     val parts = tag.removePrefix("v").split(".")
@@ -59,6 +62,16 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+  }
+}
+
+// AGP 9 disables release unit tests by default. Opt in so testReleaseUnitTest is created.
+androidComponents {
+  beforeVariants(selector().withBuildType("release")) { variantBuilder ->
+    (variantBuilder as? HasHostTestsBuilder)
+      ?.hostTests
+      ?.get(HostTestBuilder.UNIT_TEST_TYPE)
+      ?.enable = true
   }
 }
 
